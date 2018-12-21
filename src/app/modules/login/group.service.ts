@@ -24,8 +24,10 @@ export class GroupService {
     return this.groups;
   }
   getGroups(): Observable<Group[]> {
-    return this.http.get<any>(environment.endpoint.groups).pipe(
-      map(response => response.list)
-    );
+    return this.http.get<any>(environment.endpoint.groups).
+      pipe(
+        map(
+          response => response.list)
+      );
   }
 }

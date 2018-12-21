@@ -9,8 +9,10 @@ import { GroupsResolverService } from './modules/login/groups-resolver.service';
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent, 
-    resolve: {groups: GroupsResolverService,}
+    component: LoginComponent,
+    resolve: {
+      groups: GroupsResolverService,
+    }
   },
   {
     path: 'register',
@@ -19,6 +21,11 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: './pages/home/home.module#HomeModule',
+    canLoad: [AuthGuard]
+  },
+  {
+    path: 'admin',
+    loadChildren: './pages/admin/admin.module#AdminModule',
     canLoad: [AuthGuard]
   },
   {
@@ -32,6 +39,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     LoginModule
   ],
-  exports: [ RouterModule ]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
